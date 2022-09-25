@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<main class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Blog</h1>
+				<p>Bienvenue sur la page d'accueil</p>
+			</div>
+
+			{% for categorie in categories %}
+				{% if categorie.parent == null %}
+					<div class="col-12">
+						<h2>{{ categorie.name }}</h2>
+					</div>
+				{% else %}
+
+					<div class="col-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">{{ categorie.name }}</h5>
+								<a href="{{ path('categorie_list', {slug:categorie.slug}) }}" class="btn btn-primary">Voir les articles</a>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+
+			<div class="col-md-12"></div>
+		</div>
+
+
+		<section class="row">
+			<div class="col-md-12">
+				<h1>Les 8 derniers Articles publiés</h1>
+			</div>
+			{% for article in articles %}
+
+				<div class="col-3">
+					<article class="card">
+						{% for image in article.images %}
+							{% if image %}
+								<img src="{{ image.name }}" alt="{{ article.title }}" class="card-img-top">
+							{% endif %}
+						{% endfor %}
+						<div class="card-body">
+							<h5 class="card-title">{{ article.title }}</h5>
+							<p class="card-text">{{ article.content }}</p>
+							<a href="{{ path('app_article_show',{"id": article.id}) }}" class="btn btn-primary">Lire l'article</a>
+						</div>
+					</article>
+				</div>
+			{% endfor %}
+
+		</section>
+
+
+	</main>
+
+{% endblock %}

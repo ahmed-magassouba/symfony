@@ -1,0 +1,35 @@
+{% extends 'user.html.twig' %} {% block title %}Profile utilisateur{% endblock
+%} {% block body %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Information personnel</h5>
+        <p class="card-text">Prénom: {{app.user.firstname}}</p>
+        <p class="card-text">Nom: {{app.user.lastname}}</p>
+        <p class="card-text">Pseudo: {{app.user.pseudo}}</p>
+        <p class="card-text">Email: {{app.user.email}}</p>
+      </div>
+      <a href="{{ path('profil_edit') }}" class="btn danger">Modifier le profil</a>
+      <a href="{{ path('profil_pass') }}" class="btn ">Modifier le mot de passe</a>
+    </div>
+
+<div class="col">
+<h1>Annonces publier par {{app.user.firstname}} {{app.user.lastname}} ({{app.user.articles|length}})</h1>
+
+{% for article in app.user.articles %}
+<div class="col">Titre:</div>
+<div class="col">{{article.title}}</div>
+    
+{% endfor %}
+
+</div>
+
+  </div>
+</div>
+
+{% endblock %}

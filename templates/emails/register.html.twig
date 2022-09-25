@@ -1,0 +1,15 @@
+
+<p>Bonjour {{ user.firstname }} {{user.lastname}}  </p>
+<p>N'oubliez pas d'activez votre compte</p>
+
+<p>  Bienvenue sur notre site. Vous pouvez dès à présent vous connecter avec votre adresse mail et votre mot de passe.
+            Cordialement,
+            L'équipe du blog </p>
+
+
+<p><a href="{{ absolute_url(path('verify_user', {token:token} )) }}" >{{ absolute_url(path('verify_user', {token:token} )) }} </a></p>
+<p>Cet lien expirera dans un delais de 24h</p>
+
+
+
+          
